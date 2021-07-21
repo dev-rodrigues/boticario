@@ -1,23 +1,22 @@
 import { getConnection, getCustomRepository } from 'typeorm';
 import Order from '../entity/Order';
 import OrderRepository from '../repositories/OrderRepository';
-
 interface Request {
-  codigo: number;
-  valor: number;
-  data: Date;
+  code: number;
+  price: number;
+  date: Date;
   cpf: string;
 }
 
 class CreateOrderService {
 
-  public async execute({codigo, valor, data, cpf}:Request): Promise<Order> {
+  public async execute({code, price, date, cpf}:Request): Promise<Order> {
     const orderRepository = getCustomRepository(OrderRepository);
 
     const order = orderRepository.create({
-      codigo,
-      valor,
-      data,
+      code,
+      price,
+      date,
       cpf
     });
     

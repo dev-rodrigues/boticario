@@ -6,13 +6,13 @@ class Order {
   id: number;
 
   @Column('int')
-  codigo: number;
+  code: number;
 
   @Column('decimal')
-  valor: number;
+  price: number;
 
   @Column('date')
-  data: Date;
+  date: Date;
 
   @Column('nvarchar')
   cpf: string;
