@@ -16,6 +16,9 @@ class Order {
 
   @Column('nvarchar')
   cpf: string;
+
+  @Column()
+  status: string;
 }
 
 export default Order;
