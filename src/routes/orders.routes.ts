@@ -1,4 +1,4 @@
-import { response, Router } from 'express';
+import { Router } from 'express';
 import CreateOrderService from '../service/CreateOrderService';
 import FindOrderService from '../service/FindOrderService';
 
@@ -17,7 +17,7 @@ ordersRouter.post('/', async (req, res) => {
     });
     
     return res.json(order);
-  }catch(err) {
+  } catch(err) {
     return res.status(400).json({error: err.message})
   }
 });
