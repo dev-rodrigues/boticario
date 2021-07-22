@@ -21,7 +21,7 @@
 *
 * rota para listar as compras               ✅
 *
-* rota para exibir cashback                 ❌
+* rota para exibir cashback                 ✅
 *    consumir endpoint
 *
 */
