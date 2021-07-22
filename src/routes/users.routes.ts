@@ -7,9 +7,13 @@ usersRouter.post('/', async (req, res) => {
   try {
     const { fullName, cpf, email, password } = req.body;
     const createUser = new CreateUserService();
-    const user = await createUser.execute({ fullName, cpf, email, password });
+    await createUser.execute({ fullName, cpf, email, password });
     
-    return res.json(user)
+    return res.json({      
+      fullName,
+      cpf,
+      email
+    })
   } catch(err) {
     return res.status(400).json({
       error: err.message
