@@ -1,0 +1,27 @@
+/** 
+* rota para cadastro do usuario             ✅
+*    permitindo
+*      {fullName, cpf, email, password}
+*
+* rota para login                           ✅
+*
+* rota para cadastrar uma nova compra       ✅
+*    permitindo
+*      {code, price, date, cpf}
+*    status default "Em validação"
+*      exceto para cpf 153.509.460-56
+*
+* rota para editar uma compra               ❌
+*    quando
+*      situacao "Em validação"
+*
+* rota para excluir uma compra              ❌
+*    quando
+*      situacao "Em validação"
+*
+* rota para listar as compras               ✅
+*
+* rota para exibir cashback                 ❌
+*    consumir endpoint
+*
+*/
