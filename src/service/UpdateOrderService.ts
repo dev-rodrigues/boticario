@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import Order from "../domain/entity/Order";
 import AppError from "../domain/errors/AppError";
 import OrderRepository from "../repositories/OrderRepository";
 
@@ -14,7 +15,7 @@ class UpdateOrderService {
 
   private STATUS_ALLOWED : string = 'Em validação';
 
-  public async execute({ order_id, code, price, date, cpf }: Request): Promise<void> {
+  public async execute({ order_id, code, price, date, cpf }: Request): Promise<Order> {
 
     const orderRepository = getCustomRepository(OrderRepository);
 
@@ -34,7 +35,7 @@ class UpdateOrderService {
       throw new AppError("Status does not permit update", 400);
     }
 
-    orderRepository.save({
+    const order_updated = await orderRepository.save({
       id: order_id,
       code,
       price,
@@ -42,10 +43,7 @@ class UpdateOrderService {
       cpf
     });
     
-    // if (orders.length === 0) {
-    //   throw new AppError("Order does not exist", 404);
-    // }
-
+    return order_updated;
   }
 }
 

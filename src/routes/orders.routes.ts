@@ -36,7 +36,7 @@ ordersRouter.put('/', async (request, response) => {
   const { code, price, date, cpf } = request.body;
 
   const updateOrderService = new UpdateOrderService();
-  await updateOrderService.execute({
+  const updated = await updateOrderService.execute({
     order_id,
     code, 
     price, 
@@ -44,9 +44,7 @@ ordersRouter.put('/', async (request, response) => {
     cpf
   })
 
-  response.json({
-    order_id
-  })
+  response.json(updated)
 });
 
 export default ordersRouter;
