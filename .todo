@@ -15,7 +15,7 @@
 *    quando
 *      situacao "Em validação"
 *
-* rota para excluir uma compra              ❌
+* rota para excluir uma compra              ✅
 *    quando
 *      situacao "Em validação"
 *
