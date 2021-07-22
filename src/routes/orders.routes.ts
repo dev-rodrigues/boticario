@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import CreateOrderService from '../service/CreateOrderService';
 import FindOrderService from '../service/FindOrderService';
+import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
 
 const ordersRouter = Router();
+ordersRouter.use(ensureAuthenticated)
 
-ordersRouter.post('/', async (req, res) => {
+ordersRouter.post('/', async (request, res) => {  
   try {
-    const { code, price, date, cpf } = req.body;
+    const { code, price, date, cpf } = request.body;
   
     const createOrderService = new CreateOrderService();    
     const order = await createOrderService.execute({
@@ -22,9 +24,10 @@ ordersRouter.post('/', async (req, res) => {
   }
 });
 
-ordersRouter.get('/', async (req, res) => {
+ordersRouter.get('/', async (req, res) => {  
+  const user_id = req.user.id;
   const findOrderService = new FindOrderService();
-  const response = await findOrderService.execute();
+  const response = await findOrderService.execute({ user_id });
   return res.json(response);
 });
 
