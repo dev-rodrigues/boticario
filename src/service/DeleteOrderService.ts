@@ -1,20 +1,15 @@
 import { getCustomRepository } from "typeorm";
-import Order from "../domain/entity/Order";
 import AppError from "../domain/errors/AppError";
 import OrderRepository from "../repositories/OrderRepository";
 import STATUS from '../domain/objectsValues/StatusAllowd';
 
 interface Request {
   order_id: number;
-  code: number; 
-  price: number;
-  date: Date;
-  cpf: string;
 }
 
-class UpdateOrderService {
+class DeleteOrderService {
 
-  public async execute({ order_id, code, price, date, cpf }: Request): Promise<Order> {
+  public async execute({ order_id }: Request): Promise<void> {
 
     const orderRepository = getCustomRepository(OrderRepository);
 
@@ -31,19 +26,12 @@ class UpdateOrderService {
     const status_allowed = order.status === STATUS.ALLOWED;
     
     if (!status_allowed) {
-      throw new AppError("Status does not permit update", 400);
+      throw new AppError("Status does not permit delete", 400);
     }
 
-    const order_updated = await orderRepository.save({
-      id: order_id,
-      code,
-      price,
-      date,
-      cpf
-    });
-    
-    return order_updated;
+    await orderRepository.delete(order);
+
   }
 }
 
-export default UpdateOrderService;
+export default DeleteOrderService;

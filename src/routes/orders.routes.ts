@@ -5,6 +5,7 @@ import CreateOrderService from '../service/CreateOrderService';
 import FetchUserOrders from '../service/FetchUserOrders';
 import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
 import UpdateOrderService from '../service/UpdateOrderService';
+import DeleteOrderService from '../service/DeleteOrderService';
 
 const ordersRouter = Router();
 
@@ -46,5 +47,16 @@ ordersRouter.put('/', async (request, response) => {
 
   response.json(updated)
 });
+
+ordersRouter.delete('/', async (request, response) => {
+  const order_id_: string = request.query.order_id as string;
+  const order_id = parseInt(order_id_);
+
+  const deleteOrderService = new DeleteOrderService();
+  
+  await deleteOrderService.execute({ order_id });
+
+  response.status(204).json();
+})
 
 export default ordersRouter;

@@ -11,7 +11,7 @@
 *    status default "Em validação"
 *      exceto para cpf 153.509.460-56
 *
-* rota para editar uma compra               ❌
+* rota para editar uma compra               ✅
 *    quando
 *      situacao "Em validação"
 *
