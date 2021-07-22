@@ -10,7 +10,7 @@ interface Request {
   user_id: string;
 }
 
-class FindOrderService {
+class FetchUserOrders {
 
   public async execute({user_id}: Request): Promise<OrderDTO[]> {
     const orderRepository = getCustomRepository(OrderRepository);
@@ -38,4 +38,4 @@ class FindOrderService {
 
 }
 
-export default FindOrderService;
+export default FetchUserOrders;
