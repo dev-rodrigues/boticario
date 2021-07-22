@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import Order from '../entity/Order';
+import Order from '../domain/entity/Order';
 import OrderRepository from '../repositories/OrderRepository';
 import ProcessStatusService from './ProcessStatusService';
 
@@ -14,10 +14,9 @@ class CreateOrderService {
 
   public async execute({ code, price, date, cpf }:Request): Promise<Order> {    
     const orderRepository = getCustomRepository(OrderRepository);
+
     const status = new ProcessStatusService().execute({cpf})
-    
-    console.log(status)
-    
+        
     const order = orderRepository.create({
       code,
       price,

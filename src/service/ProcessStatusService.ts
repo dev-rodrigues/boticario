@@ -1,4 +1,4 @@
-import whiteList from "../util/WhiteList";
+import whiteList from "../domain/utils/WhiteList";
 
 interface Request {
   cpf: string;

@@ -18,7 +18,14 @@ class Order {
   cpf: string;
 
   @Column()
-  status: string;
+  status: string; 
+
+  constructor(code:number, price:number, date: Date, status:string) {
+    this.code = code;
+    this.price = price;
+    this.date = date;
+    this.status = status;
+  }
 }
 
 export default Order;
