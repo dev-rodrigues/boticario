@@ -1,7 +1,8 @@
 import { getCustomRepository } from 'typeorm';
 import Order from '../../../domain/entities/Order';
 
-import OrderRepository from '../repositories/OrderRepository';
+import IOrderRepository from '../repositories/IOrderRepository'
+import OrderRepository from '../infra/typeorm/repositories/OrderRepository';
 import ProcessStatusService from './ProcessStatusService';
 
 interface Request {
@@ -13,12 +14,17 @@ interface Request {
 
 class CreateOrderService {
 
+  private orderRepository: IOrderRepository;
+
+  constructor(orderRepository: IOrderRepository) {    
+    this.orderRepository = orderRepository;
+  }
+
   public async execute({ code, price, date, cpf }:Request): Promise<Order> {    
-    const orderRepository = getCustomRepository(OrderRepository);
 
     const status = new ProcessStatusService().execute({cpf})
         
-    const order = orderRepository.create({
+    const order = this.orderRepository.create({
       code,
       price,
       date,
@@ -26,7 +32,6 @@ class CreateOrderService {
       status
     });
 
-    await orderRepository.save(order);
     return order;
   }
 }

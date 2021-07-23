@@ -1,7 +1,6 @@
 import { STATUS_CODES } from "http";
-import { getCustomRepository } from "typeorm";
 import AppError from "../../../shared/errors/AppError";
-import OrderRepository from "../repositories/OrderRepository";
+import IOrderRepository from "../repositories/IOrderRepository";
 
 interface Request {
   order_id: number;
@@ -9,15 +8,15 @@ interface Request {
 
 class DeleteOrderService {
 
+  private orderRepository: IOrderRepository;
+
+  constructor(orderRepository: IOrderRepository) {    
+    this.orderRepository = orderRepository;
+  }
+
   public async execute({ order_id }: Request): Promise<void> {
 
-    const orderRepository = getCustomRepository(OrderRepository);
-
-    const order = await orderRepository.findOne({
-      where: {
-        id: order_id
-      }
-    });
+    const order = await this.orderRepository.findById(order_id);
 
     if (order === undefined) {
       throw new AppError("Order does not exist", 404);
@@ -29,8 +28,7 @@ class DeleteOrderService {
       throw new AppError("Status does not permit delete", 400);
     }
 
-    await orderRepository.delete(order);
-
+    await this.orderRepository.delete(order);
   }
 }
 
