@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import UserRepository from '../../../../users/infra/typeorm/repositories/UserRepository';
+import UserRepository from '../../../../users/infra/repositories/typeorm/repositories/UserRepository';
 import CreateOrderService from '../../../services/CreateOrderService';
 import DeleteOrderService from '../../../services/DeleteOrderService';
 import FetchUserOrdersService from '../../../services/FetchUserOrdersService';

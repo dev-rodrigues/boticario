@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import AuthenticateUserService from '../../../services/AuthenticateUserService';
 
-import UserRepository from '../../typeorm/repositories/UserRepository';
+import UserRepository from '../../repositories/typeorm/repositories/UserRepository';
 
 class SessionsControllers {
 

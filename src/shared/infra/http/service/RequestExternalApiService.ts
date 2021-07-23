@@ -4,7 +4,7 @@ import objectsValues from '../../../objectsValues/Url';
 import axios from 'axios';
 import AppError from "../../../../domain/errors/AppError";
 import FindUserService from '../../../../modules/users/services/FindUserService';
-import UserRepository from '../../../../modules/users/infra/typeorm/repositories/UserRepository';
+import UserRepository from '../../../../modules/users/infra/repositories/typeorm/repositories/UserRepository';
 
 interface Request {
   user_id: string;

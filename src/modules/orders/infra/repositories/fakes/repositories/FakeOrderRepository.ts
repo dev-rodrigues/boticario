@@ -28,7 +28,7 @@ class FakeOrderRepository implements IOrderRepository {
       if (it.cpf === cpf) {
         located.push(it);
       }
-    })
+    });
 
     return located;
   }

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateUserService from '../../../services/CreateUserService';
-import UserRepository from '../../typeorm/repositories/UserRepository';
+import UserRepository from '../../repositories/typeorm/repositories/UserRepository';
 
 class UsersControllers {
   public async create(request:Request , response:Response):Promise<Response> {
