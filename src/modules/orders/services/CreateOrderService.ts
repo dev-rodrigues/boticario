@@ -1,5 +1,6 @@
 import { getCustomRepository } from 'typeorm';
-import Order from '../domain/entity/Order';
+import Order from '../../../domain/entities/Order';
+
 import OrderRepository from '../repositories/OrderRepository';
 import ProcessStatusService from './ProcessStatusService';
 

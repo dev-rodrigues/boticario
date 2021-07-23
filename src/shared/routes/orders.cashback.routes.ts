@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import 'express-async-errors';
 
-import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
-import FindUserService from '../service/FindUserService';
-import RequestExternalApiService from '../service/RequestExternalApiService';
+import ensureAuthenticated from '../infra/http/middlewares/EnsureAuthenticated';
+import RequestExternalApiService from '../infra/http/service/RequestExternalApiService';
 
 const cashBackRouter = Router();
 

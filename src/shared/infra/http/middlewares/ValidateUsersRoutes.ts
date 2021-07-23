@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import ErrorDTO from "../domain/errors/ErrorDTO";
-import ValidationError from "../domain/errors/ValidationError";
+import ErrorDTO from "../../../errors/ErrorDTO";
+import ValidationError from "../../../errors/ValidationError";
 
 export default function validate(  
   request: Request, 

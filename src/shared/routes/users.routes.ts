@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import CreateUserService from '../service/CreateUserService';
-import validate from '../middlewares/ValidateUsersRoutes';
+import CreateUserService from '../../modules/users/services/CreateUserService';
 
 const usersRouter = Router();
 
-usersRouter.post('/', validate, async (req, res) => {
+usersRouter.post('/', async (req, res) => {
   try {
     const { fullName, cpf, email, password } = req.body;
     const createUser = new CreateUserService();

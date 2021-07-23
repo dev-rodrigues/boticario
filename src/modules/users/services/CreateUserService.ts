@@ -1,8 +1,8 @@
 import { getCustomRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
-import User from "../domain/entity/User";
 import UserRepository from "../repositories/UserRepository";
+import User from '../../../domain/entities/User';
 
 interface Request {
   fullName: string;

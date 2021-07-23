@@ -1,7 +1,7 @@
+import { STATUS_CODES } from "http";
 import { getCustomRepository } from "typeorm";
-import AppError from "../domain/errors/AppError";
+import AppError from "../../../shared/errors/AppError";
 import OrderRepository from "../repositories/OrderRepository";
-import STATUS from '../domain/objectsValues/StatusAllowd';
 
 interface Request {
   order_id: number;
@@ -23,7 +23,7 @@ class DeleteOrderService {
       throw new AppError("Order does not exist", 404);
     }
 
-    const status_allowed = order.status === STATUS.ALLOWED;
+    const status_allowed = order.status === STATUS_CODES.ALLOWED;
     
     if (!status_allowed) {
       throw new AppError("Status does not permit delete", 400);

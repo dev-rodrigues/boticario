@@ -1,9 +1,8 @@
 import { getCustomRepository } from 'typeorm';
-import Order from '../domain/entity/Order';
-import User from '../domain/entity/User';
-import OrderDTO from '../domain/objectsValues/OrderDTO';
+import Order from '../../../domain/entities/Order';
+import OrderDTO from '../../../shared/objectsValues/OrderDTO';
+import FindUserService from '../../users/services/FindUserService';
 import OrderRepository from '../repositories/OrderRepository';
-import FindUserService from './FindUserService';
 import ProcessCashBack from './ProcessCashBack';
 
 interface Request {

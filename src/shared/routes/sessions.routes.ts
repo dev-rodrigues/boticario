@@ -1,7 +1,7 @@
 import { Router } from "express";
 import 'express-async-errors';
+import AuthenticateUserService from "../../modules/users/services/AuthenticateUserService";
 
-import AuthenticateUserService from "../service/AuthenticateUserService";
 
 const sessionsRouter = Router();
 

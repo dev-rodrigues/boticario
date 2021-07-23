@@ -1,6 +1,6 @@
-import Order from "../domain/entity/Order";
-import CashbackDTO from "../domain/objectsValues/CashbackDTO";
-import OrderDTO from "../domain/objectsValues/OrderDTO";
+import Order from "../../../domain/entities/Order";
+import CashbackDTO from "../../../shared/objectsValues/CashbackDTO";
+import OrderDTO from "../../../shared/objectsValues/OrderDTO";
 
 class ProcessCashBack {
 

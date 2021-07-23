@@ -1,14 +1,14 @@
 import express, { Request, Response, NextFunction }  from 'express';
-import bodyParser from 'body-parser';
-import routes from './routes/index';
-import AppError from './domain/errors/AppError';
+import routes from './shared/routes/index';
+import AppError from './shared/errors/AppError';
 
-import './database';
-import ValidationError from './domain/errors/ValidationError';
+import './shared/infra/database/index';
+import ValidationError from './shared/errors/ValidationError';
 const app = express()
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(routes);
+app.use(express.urlencoded({ extended: true }))
 
 app.use((err: Error, request: Request, response:Response, next: NextFunction)=> {
   if (err instanceof AppError) {
@@ -25,6 +25,7 @@ app.use((err: Error, request: Request, response:Response, next: NextFunction)=> 
     })
   }
 
+  console.log(err)
   return response.status(500).json({
     status: 'error',
     message: 'Internal server error'

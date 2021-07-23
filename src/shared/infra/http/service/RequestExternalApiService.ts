@@ -1,8 +1,9 @@
-import FindUserService from "./FindUserService";
-import objectsValues from '../domain/objectsValues/Url';
+
+import objectsValues from '../../../objectsValues/Url';
 
 import axios from 'axios';
-import AppError from "../domain/errors/AppError";
+import AppError from "../../../errors/AppError";
+import FindUserService from '../../../../modules/users/services/FindUserService';
 
 interface Request {
   user_id: string;

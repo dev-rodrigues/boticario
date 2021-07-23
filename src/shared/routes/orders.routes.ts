@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import 'express-async-errors';
+import CreateOrderService from '../../modules/orders/services/CreateOrderService';
+import DeleteOrderService from '../../modules/orders/services/DeleteOrderService';
+import FetchUserOrders from '../../modules/orders/services/FetchUserOrders';
+import UpdateOrderService from '../../modules/orders/services/UpdateOrderService';
 
-import CreateOrderService from '../service/CreateOrderService';
-import FetchUserOrders from '../service/FetchUserOrders';
-import ensureAuthenticated from '../middlewares/EnsureAuthenticated';
-import UpdateOrderService from '../service/UpdateOrderService';
-import DeleteOrderService from '../service/DeleteOrderService';
+import ensureAuthenticated from '../infra/http/middlewares/EnsureAuthenticated';
 
 const ordersRouter = Router();
 

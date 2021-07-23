@@ -1,4 +1,4 @@
-import Order from "../entity/Order";
+import Order from "../../domain/entities/Order";
 import CashbackDTO from "./CashbackDTO";
 
 class OrderDTO {
