@@ -7,10 +7,7 @@ class ProcessCashBack {
   public execute(orders:Order[]): OrderDTO[] {
     let processed:OrderDTO[] = [];
 
-    orders.forEach(element => {      
-      processed.push(this.processCashBack(element))
-    });
-
+    orders.forEach(element => processed.push(this.processCashBack(element)));
     return processed;
   }
   

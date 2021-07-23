@@ -22,7 +22,7 @@ class UpdateOrderService {
     this.orderRepository = orderRepository;
   }
 
-  public async execute({ id, code, price, date, cpf }: Request): Promise<Order> {
+  public async execute({ id, code, price, date, cpf }: Request): Promise<Order|undefined> {
 
     const order = await this.orderRepository.findById(id);
 

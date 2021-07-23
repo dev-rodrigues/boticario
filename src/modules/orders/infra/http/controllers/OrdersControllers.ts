@@ -6,7 +6,7 @@ import CreateOrderService from '../../../services/CreateOrderService';
 import DeleteOrderService from '../../../services/DeleteOrderService';
 import FetchUserOrdersService from '../../../services/FetchUserOrdersService';
 import UpdateOrderService from '../../../services/UpdateOrderService';
-import OrderRepository from '../../typeorm/repositories/OrderRepository';
+import OrderRepository from '../../repositories/typeorm/repositories/OrderRepository';
 
 class OrdersControllers {
 

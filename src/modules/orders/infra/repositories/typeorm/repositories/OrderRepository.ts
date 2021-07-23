@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
-import Order from '../../../../../domain/entities/Order';
-import ICreateOrderDTO from '../../../dtos/ICreateOrderDTO';
-import IUpdatedOrderDTO from '../../../dtos/IUpdatedOrderDTO';
-import IOrderRepository from '../../../repositories/IOrderRepository';
+import Order from '../../../../../../domain/entities/Order';
+import ICreateOrderDTO from '../../../../dtos/ICreateOrderDTO';
+import IUpdatedOrderDTO from '../../../../dtos/IUpdatedOrderDTO';
+import IOrderRepository from '../../../../repositories/IOrderRepository';
 
 class OrderRepository implements IOrderRepository {
   private ormRepository: Repository<Order>;
@@ -24,7 +24,7 @@ class OrderRepository implements IOrderRepository {
     return order;
   }
 
-  public async create({ code, cpf, date, price, status }: ICreateOrderDTO): Promise<Order> {
+  public async create({ code, cpf, date, price, status }: ICreateOrderDTO): Promise<Order|undefined> {
     const order = this.ormRepository.create( {
       code,
       cpf,

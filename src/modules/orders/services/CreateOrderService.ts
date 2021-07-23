@@ -20,7 +20,7 @@ class CreateOrderService {
     this.orderRepository = orderRepository;
   }
 
-  public async execute({ code, price, date, cpf }: Request): Promise<Order> {    
+  public async execute({ code, price, date, cpf }: Request): Promise<Order|undefined> {    
 
     const status = new ProcessStatusService().execute({cpf})
         
