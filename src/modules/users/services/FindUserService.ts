@@ -1,6 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import User from "../../../domain/entities/User";
+import AppError from '../../../domain/errors/AppError';
 import IUserRepository from "../repositories/IUserRepository";
 
 interface Request {
@@ -20,7 +21,7 @@ class FindUserService {
     const user = await this.userRepository.findById(id)
     
     if (!user) {
-      throw new Error('User does not exists')
+      throw new AppError('User does not exists', 404)
     }
 
     return user

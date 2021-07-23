@@ -1,4 +1,3 @@
-
 import User from "../../../../../../domain/entities/User";
 import ICreateUserDTO from "../../../../dtos/ICreateUserDTO";
 import IUserRepository from "../../../../repositories/IUserRepository";
@@ -11,12 +10,14 @@ class FakeUserRepository implements IUserRepository {
     const user = new User();
     Object.assign(
       user,
-      { id: Math.random,
+      { 
+        id: 1,
+        fullName,
         cpf,
         email,
         password
       }
-    )
+    );
 
     this.savedUsers.push(user);
     return user;

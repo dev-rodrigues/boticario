@@ -1,4 +1,5 @@
 import { container } from 'tsyringe';
+import '../../modules/users/providers/index';
 
 import IOrderRepository from '../../modules/orders/repositories/IOrderRepository';
 import OrderRepository from '../../modules/orders/infra/repositories/typeorm/repositories/OrderRepository';
