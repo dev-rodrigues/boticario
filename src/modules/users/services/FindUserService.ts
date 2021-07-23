@@ -1,20 +1,27 @@
 import { getCustomRepository } from "typeorm";
 import User from "../../../domain/entities/User";
-import UserRepository from "../repositories/UserRepository";
+import IUserRepository from "../repositories/IUserRepository";
 
 interface Request {
-  user_id: number;
+  id: number;
 }
 
 class FindUserService {
-  public async execute({ user_id }: Request):Promise<User> {
-    const repository = getCustomRepository(UserRepository);
-    const user = await repository.findOne({
-      where: {id:  user_id}
-    })
+  
+  private userRepository: IUserRepository;
+
+  constructor(userRepository: IUserRepository) {    
+    this.userRepository = userRepository;
+  }
+
+  public async execute({ id }: Request):Promise<User> {
+
+    const user = await this.userRepository.findById(id)
+    
     if (!user) {
       throw new Error('User does not exists')
     }
+
     return user
   }
 }

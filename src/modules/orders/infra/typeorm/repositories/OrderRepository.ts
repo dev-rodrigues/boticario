@@ -10,6 +10,7 @@ class OrderRepository implements IOrderRepository {
   constructor() {
     this.ormRepository = getRepository(Order);
   }
+  
   public async findById(id: number): Promise<Order | undefined> {
     return await this.ormRepository.findOne(id);
   }

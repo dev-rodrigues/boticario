@@ -1,6 +1,5 @@
 import whiteList from "../../../shared/utils/WhiteList";
 
-
 interface Request {
   cpf: string;
 }

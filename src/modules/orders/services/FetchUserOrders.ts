@@ -4,6 +4,7 @@ import FindUserService from '../../users/services/FindUserService';
 import ProcessCashBack from './ProcessCashBack';
 
 import IOrderRepository from "../repositories/IOrderRepository";
+import IUserRepository from '../../users/repositories/IUserRepository';
 
 interface Request {
   user_id: string;
@@ -12,17 +13,19 @@ interface Request {
 class FetchUserOrders {
 
   private orderRepository: IOrderRepository;
+  private userRepository: IUserRepository;
 
-  constructor(orderRepository: IOrderRepository) {    
+  constructor(orderRepository: IOrderRepository, userRepository: IUserRepository) {    
     this.orderRepository = orderRepository;
+    this.userRepository = userRepository;
   }
 
   public async execute({user_id}: Request): Promise<OrderDTO[]> {
-    const findUserService = new FindUserService();
+    const findUserService = new FindUserService(this.userRepository);
     const processCashBack = new ProcessCashBack();
 
     const user = await findUserService.execute({
-      user_id: parseInt(user_id) 
+      id: parseInt(user_id) 
     })
     
     const orders = await this.orderRepository.findByCpf(user.cpf);
@@ -37,11 +40,9 @@ class FetchUserOrders {
       orders.map(function(it) {                  
         response.push(new Order(it.code, it.price, it.date, it.status))
       })
-    }
-    
+    }    
     return response;
   }
-
 }
 
 export default FetchUserOrders;

@@ -1,9 +1,12 @@
+import 'reflect-metadata';
 import express, { Request, Response, NextFunction }  from 'express';
 import routes from './shared/routes/index';
-import AppError from './shared/errors/AppError';
+import AppError from './domain/errors/AppError';
 
+import './shared/container/index';
 import './shared/infra/database/index';
-import ValidationError from './shared/errors/ValidationError';
+
+import ValidationError from './domain/errors/ValidationError';
 const app = express()
 
 app.use(express.json());

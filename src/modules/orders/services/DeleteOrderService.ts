@@ -1,16 +1,18 @@
 import { STATUS_CODES } from "http";
-import AppError from "../../../shared/errors/AppError";
+import { injectable, inject } from 'tsyringe';
+import AppError from "../../../domain/errors/AppError";
 import IOrderRepository from "../repositories/IOrderRepository";
 
 interface Request {
   order_id: number;
 }
 
+@injectable()
 class DeleteOrderService {
 
-  private orderRepository: IOrderRepository;
-
-  constructor(orderRepository: IOrderRepository) {    
+  constructor(
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository) {    
     this.orderRepository = orderRepository;
   }
 

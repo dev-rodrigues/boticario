@@ -1,7 +1,8 @@
+import { injectable, inject } from 'tsyringe';
+
 import { STATUS_CODES } from "http";
-import { getCustomRepository } from "typeorm";
 import Order from "../../../domain/entities/Order";
-import AppError from "../../../shared/errors/AppError";
+import AppError from "../../../domain/errors/AppError";
 import IOrderRepository from "../repositories/IOrderRepository";
 
 interface Request {
@@ -12,11 +13,12 @@ interface Request {
   cpf: string;
 }
 
+@injectable()
 class UpdateOrderService {
 
-  private orderRepository: IOrderRepository;
-
-  constructor(orderRepository: IOrderRepository) {    
+  constructor(
+    @inject('OrderRepository')
+    private orderRepository: IOrderRepository) {    
     this.orderRepository = orderRepository;
   }
 
