@@ -6,7 +6,6 @@ describe('CreateOrderService', () => {
     const fakeOrderRepository = new FakeOrderRepository();
     const createOrderService = new CreateOrderService(fakeOrderRepository);
     
-
     const order = await createOrderService.execute({
       code: 1,
       cpf: '111.111.111-11',
@@ -16,5 +15,21 @@ describe('CreateOrderService', () => {
     
 
     expect(order).toHaveProperty('id');
+  })
+
+  it('should be able to receive an status equal Aprovado', async () => {
+    const fakeOrderRepository = new FakeOrderRepository();
+    const createOrderService = new CreateOrderService(fakeOrderRepository);
+
+    const order = await createOrderService.execute({
+      code: 1,
+      cpf: '111.111.111-11',
+      date: new Date(),
+      price: 1
+    });
+
+    
+
+    expect(order?.status).toHaveReturned()
   })
 })
