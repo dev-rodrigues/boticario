@@ -1,4 +1,5 @@
-import { getCustomRepository } from "typeorm";
+import { injectable, inject } from 'tsyringe';
+
 import User from "../../../domain/entities/User";
 import IUserRepository from "../repositories/IUserRepository";
 
@@ -6,11 +7,11 @@ interface Request {
   id: number;
 }
 
+@injectable()
 class FindUserService {
-  
-  private userRepository: IUserRepository;
-
-  constructor(userRepository: IUserRepository) {    
+  constructor(
+    @inject('UserRepository')
+    private userRepository: IUserRepository) {    
     this.userRepository = userRepository;
   }
 

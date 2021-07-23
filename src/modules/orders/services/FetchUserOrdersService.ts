@@ -10,7 +10,7 @@ interface Request {
   user_id: string;
 }
 
-class FetchUserOrders {
+class FetchUserOrdersService {
 
   private orderRepository: IOrderRepository;
   private userRepository: IUserRepository;
@@ -45,4 +45,4 @@ class FetchUserOrders {
   }
 }
 
-export default FetchUserOrders;
+export default FetchUserOrdersService;

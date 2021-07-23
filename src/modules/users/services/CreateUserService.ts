@@ -1,15 +1,15 @@
-import { getCustomRepository } from 'typeorm';
+import { injectable, inject } from 'tsyringe';
 import { hash } from 'bcryptjs';
 
 import User from '../../../domain/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
 
+@injectable()
 class CreateUserService {
-
-  private userRepository: IUserRepository;
-
-  constructor(userRepository: IUserRepository) {    
+  constructor(
+    @inject('UserRepository')
+    private userRepository: IUserRepository) {    
     this.userRepository = userRepository;
   }
 

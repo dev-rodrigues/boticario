@@ -1,7 +1,8 @@
+import { injectable, inject } from 'tsyringe';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import AppError from '../../../domain/errors/AppError';
 
+import AppError from '../../../domain/errors/AppError';
 import authConfig from '../../../configuration/auth';
 import User from '../../../domain/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
@@ -18,11 +19,12 @@ interface Response {
   token: string;
 }
 
+@injectable()
 class AuthenticateUserService {
 
-  private userRepository: IUserRepository;
-
-  constructor(userRepository: IUserRepository) {    
+  constructor(
+    @inject('UserRepository')
+    private userRepository: IUserRepository) {    
     this.userRepository = userRepository;
   }
 
