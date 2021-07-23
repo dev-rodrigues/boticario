@@ -1,29 +1,10 @@
 import { Router } from "express";
 import 'express-async-errors';
-import UserRepository from "../../modules/users/infra/typeorm/repositories/UserRepository";
-import AuthenticateUserService from "../../modules/users/services/AuthenticateUserService";
-
+import SessionsControllers from "../../modules/users/infra/http/controllers/SessionsControllers";
 
 const sessionsRouter = Router();
+const sessionsControllers = new SessionsControllers();
 
-sessionsRouter.post('/', async (req, res) => {  
-  const { email, password } = req.body;
-  const userRepository = new UserRepository();
-
-  const authenticateUser = new AuthenticateUserService(userRepository);
-  
-  const { user, token } = await authenticateUser.execute({
-    email,
-    password
-  })
-
-  return res.json({
-    id: user.id,
-    fullname: user.fullName,
-    cpf: user.cpf,
-    email: user.email,
-    token
-  });
-});
+sessionsRouter.post('/', sessionsControllers.create);
 
 export default sessionsRouter;

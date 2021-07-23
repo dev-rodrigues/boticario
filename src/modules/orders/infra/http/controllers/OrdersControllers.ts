@@ -10,7 +10,7 @@ import OrderRepository from '../../typeorm/repositories/OrderRepository';
 
 class OrdersControllers {
 
-  public async list(request:Request , response:Response):Promise<Response> {
+  public async index(request:Request , response:Response):Promise<Response> {
     const orderRepository = container.resolve(OrderRepository);
     const userRepository = container.resolve(UserRepository);
 
