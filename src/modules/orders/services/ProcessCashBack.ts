@@ -1,8 +1,18 @@
 import Order from "../../../domain/entities/Order";
 import CashbackDTO from "../../../shared/objectsValues/CashbackDTO";
 import OrderDTO from "../../../shared/objectsValues/OrderDTO";
+import CashbackService from "./CashbackService";
+import OrderPercentageService from "./OrderPercentageService";
 
 class ProcessCashBack {
+  
+  private orderPercentageService: OrderPercentageService;
+  private cashbackService: CashbackService;
+
+  constructor() {
+    this.orderPercentageService = new OrderPercentageService();
+    this.cashbackService = new CashbackService();
+  }
 
   public execute(orders:Order[]): OrderDTO[] {
     let processed:OrderDTO[] = [];
@@ -12,25 +22,11 @@ class ProcessCashBack {
   }
   
   private processCashBack(order:Order):OrderDTO {
-    const percentage = this.getPercentage(order.price);
-    const valueOfReturn = this.getReturn(order.price, percentage);
+    const percentage = this.orderPercentageService.execute({ price: order.price});
+    const valueOfReturn = this.cashbackService.execute({ percentage: order.price, price: order.price });
 
     const cashbackDTO = new CashbackDTO(percentage, valueOfReturn);    
     return this.getOrderDTO(order, cashbackDTO);
-  }
-
-  private getPercentage(price:number): number {
-    if (price <= 1000) {
-      return 10;
-
-    } else if (price > 1000 && price <= 1500) {
-      return 15;
-    } 
-    return 20;
-  }
-
-  private getReturn(price:number, percentage: number): number {
-    return price * (percentage / 100);
   }
 
   private getOrderDTO(order:Order, cashbackDTO:CashbackDTO): OrderDTO {

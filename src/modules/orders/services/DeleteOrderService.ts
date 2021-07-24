@@ -1,7 +1,9 @@
-import { STATUS_CODES } from "http";
 import { injectable, inject } from 'tsyringe';
+
 import AppError from "../../../domain/errors/AppError";
+import StatusAllowd from '../../../shared/objectsValues/StatusAllowd';
 import IOrderRepository from "../repositories/IOrderRepository";
+
 
 interface Request {
   order_id: number;
@@ -16,21 +18,22 @@ class DeleteOrderService {
     this.orderRepository = orderRepository;
   }
 
-  public async execute({ order_id }: Request): Promise<void> {
+  public async execute({ order_id }: Request): Promise<boolean> {
 
     const order = await this.orderRepository.findById(order_id);
-
-    if (order === undefined) {
+            
+    if (order === undefined) {      
       throw new AppError("Order does not exist", 404);
     }
 
-    const status_allowed = order.status === STATUS_CODES.ALLOWED;
-    
-    if (!status_allowed) {
+    const isApproved = order.status === StatusAllowd.APPROVED;
+        
+    if (isApproved) {
       throw new AppError("Status does not permit delete", 400);
     }
 
-    await this.orderRepository.delete(order);
+    
+    return await this.orderRepository.delete(order);
   }
 }
 

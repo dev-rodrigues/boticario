@@ -1,5 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 import Order from '../../../../../../domain/entities/Order';
+import AppError from '../../../../../../domain/errors/AppError';
 import ICreateOrderDTO from '../../../../dtos/ICreateOrderDTO';
 import IUpdatedOrderDTO from '../../../../dtos/IUpdatedOrderDTO';
 import IOrderRepository from '../../../../repositories/IOrderRepository';
@@ -49,8 +50,13 @@ class OrderRepository implements IOrderRepository {
     return updated;
   }
 
-  public async delete(order: Order): Promise<void> {
-    await this.ormRepository.delete(order);
+  public async delete(order: Order): Promise<boolean> {
+    try {
+      await this.ormRepository.delete(order);
+      return true;
+    } catch {
+      throw new AppError("Id does not exist", 404)
+    }    
   }
 
 }

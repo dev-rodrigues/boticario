@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
-import { STATUS_CODES } from "http";
 import Order from "../../../domain/entities/Order";
 import AppError from "../../../domain/errors/AppError";
 import IOrderRepository from "../repositories/IOrderRepository";
+import StatusAllowd from '../../../shared/objectsValues/StatusAllowd';
 
 interface Request {
   id: number;
@@ -30,9 +30,8 @@ class UpdateOrderService {
       throw new AppError("Order does not exist", 404);
     }
 
-    const status_allowed = order.status === STATUS_CODES.ALLOWED;
-    
-    if (!status_allowed) {
+    const approved = order.status === StatusAllowd.APPROVED;    
+    if (approved) {
       throw new AppError("Status does not permit update", 400);
     }
 

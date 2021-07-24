@@ -9,8 +9,7 @@ export default function validate(
 
   var erros:ErrorDTO[] = []
   const { fullName, cpf, email, password } = request.body;
-  console.log(fullName.length)
-
+  
   if (fullName.length === 0) {
     erros.push({
       input: 'fullName',

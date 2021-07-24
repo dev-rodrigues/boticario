@@ -31,7 +31,7 @@ class CreateOrderService {
       cpf,
       status
     });
-
+        
     return order;
   }
 }

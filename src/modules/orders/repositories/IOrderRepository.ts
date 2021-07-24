@@ -7,5 +7,5 @@ export default interface IOrderRepository {
   update({id, code, cpf, date, price, status}: IUpdatedOrderDTO): Promise<Order|undefined >
   findById(id: number): Promise<Order | undefined>;
   findByCpf(cpf: string): Promise<Order[] | undefined>;
-  delete(order: Order): Promise<void>;
+  delete(order: Order): Promise<boolean>;
 }

@@ -1,3 +1,3 @@
 export default {
-  ALLOWED:'Em validação'
+  APPROVED:'Aprovado'
 }
