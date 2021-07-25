@@ -7,3 +7,4 @@ temp/
 yarn.lock
 npm.lock
 coverage/
+package-lock.json

@@ -3,10 +3,19 @@
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/node": "^7.14.7",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-typescript": "^7.14.5",
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/node": "^8.0.29",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "ts-node": "3.3.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "3.3.3333"
@@ -30,10 +39,10 @@
     "uuidv4": "^6.2.11"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev:server": "ts-node-dev src/server.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
     "start": "ts-node src/index.ts",
-    "test": "jest"
+    "test": "jest"    
   }
 }
