@@ -1,0 +1,307 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Desafio Boticário",
+    "description": "Desafio Backend Boticário",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Orders",
+      "description": "API for orders in the system"
+    },
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Sessions",
+      "description": "API for user create a session"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes":[
+    "application/json"
+  ],
+  "produces":[
+    "application/json"
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "Fetch all requests from authenticated user",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"            
+          }          
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Beater ${token}",
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Orders"
+        ]
+      },
+      "post": {
+        "summary": "Create a order for logged in user",
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/order"
+            },
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Beater ${token}",
+            "type": "string"
+          }
+        ],          
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }         
+        },
+        "tags": [
+          "Orders"
+        ]
+      },
+      "put": {       
+        "summary": "Create a order for logged in user",        
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],        
+        "responses": {
+          "204": {
+            "description": "Resource updated successfully",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }         
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/order"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "order_id",
+            "type": "number",
+            "description": "The number of id the order",
+            "required": true            
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Beater ${token}",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Orders"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a order by id",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "order_id",
+            "type": "number",
+            "description": "The number of id the order",
+            "required": true            
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Beater ${token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Resource deleted successfully"            
+          },
+          "401": {
+            "description": "Unauthorized"
+          }         
+        },
+        "tags": [
+          "Orders"
+        ]
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Create an user",
+        "parameters": [
+          {
+            "in": "body",            
+            "schema": {
+              "$ref": "#/definitions/user"
+            }            
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }         
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/sessions": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",            
+            "schema": {
+              "$ref": "#/definitions/session"
+            }            
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/auth"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }         
+        },
+        "tags": [
+          "Sessions"
+        ]
+
+      }
+    }
+  },  
+  "definitions": {    
+    "order": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        },
+        "date": {
+          "type": "string",
+          "example": "'2021-07-21'"
+        },
+        "cpf": {
+          "type": "string"          
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "cpf": {
+          "type": "string"
+        }
+      }
+    },
+    "session": {
+      "type":"object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "cpf": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

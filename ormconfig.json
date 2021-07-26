@@ -1,11 +1,11 @@
-{
+{   
    "type": "mssql",
-   "host": "localhost",
+   "host": "127.0.0.1",
    "username": "sa",
-   "password": "yourStrong(!)Password",
-   "database": "boticario",
+   "password": "Admin12345",
+   "database": "tempdb",
    "synchronize": true,
-   "logging": false,
+   "logging": false,   
    "entities": [
       "src/domain/entities/**/*.ts"
    ],

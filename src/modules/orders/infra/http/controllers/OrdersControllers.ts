@@ -19,7 +19,7 @@ class OrdersControllers {
     const orders = await fetchUserOrders.execute({ user_id });
     return response.json(orders);
   }
-
+  
   public async create(request:Request , response:Response):Promise<Response> {
     const { code, price, date, cpf } = request.body;
 
@@ -33,9 +33,9 @@ class OrdersControllers {
       cpf
     });
     
-    return response.json(order);
+    return response.status(201).json(order);
   }
-
+  
   public async update(request:Request , response:Response):Promise<Response> {
     const order_id_: string = request.query.order_id as string;  
     const { code, price, date, cpf } = request.body;
@@ -50,9 +50,9 @@ class OrdersControllers {
       cpf
     })
   
-    return response.json(updated)
+    return response.status(204).json(updated)
   }
-
+  
   public async destroy(request:Request , response:Response):Promise<Response> {
     const order_id_: string = request.query.order_id as string;
     const order_id = parseInt(order_id_);
