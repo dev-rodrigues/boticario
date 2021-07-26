@@ -41,3 +41,5 @@ app.use((err: Error, request: Request, response:Response, next: NextFunction)=> 
 app.listen(3333, ()=> {
   console.log(' 🚀 server stared on port 3333 🚀')
 })
+
+export default app;

@@ -4,9 +4,6 @@ import FakeHashProvider from "../providers/HashProvider/fakes/FakeHashProvider";
 import AuthenticateUserService from "./AuthenticateUserService";
 import CreateUserService from "./CreateUserService"
 
-
-
-
 describe('AuthenticateUserService', () => {
   it('should be able to authenticate', async () => {  
     const fakeUsersRepository = new FakeUserRepository;
