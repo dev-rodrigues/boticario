@@ -1,9 +1,10 @@
 {   
-   "type": "mssql",
-   "host": "127.0.0.1",
-   "username": "sa",
-   "password": "Admin12345",
-   "database": "tempdb",
+   "type": "postgres",
+   "host": "db",
+   "port": 5432,
+   "username": "postgres",
+   "password": "postgres",
+   "database": "postgres",
    "synchronize": true,
    "logging": false,   
    "entities": [

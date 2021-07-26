@@ -6,9 +6,14 @@ import swaggerUi from 'swagger-ui-express';
 import * as swaggerDoc from './swagger.json';
 
 import './shared/container/index';
-import './shared/infra/database/index';
+import ConnectionDatabase  from './shared/infra/database';
 
 import ValidationError from './domain/errors/ValidationError';
+
+
+const connectionDatabase = new ConnectionDatabase();
+connectionDatabase.connect()
+
 const app = express()
 
 app.use(express.json());

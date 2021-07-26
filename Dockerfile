@@ -1,11 +1,13 @@
 FROM node:14
 
-WORKDIR /usr
-COPY package.json ./
-COPY tsconfig.json ./
-COPY src ./src
+WORKDIR /usr/app
 
-RUN ls -a
+COPY package*.json ./
+COPY src ./src
+COPY tsconfig.json ./
+COPY ormconfig.json ./
+COPY swaggerConfig.json ./
+
 RUN npm install
 
 EXPOSE 3333

@@ -14,7 +14,7 @@ class Order {
   @Column('date')
   date: Date;
 
-  @Column('nvarchar')
+  @Column()
   cpf: string;
 
   @Column()
