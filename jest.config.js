@@ -6,7 +6,7 @@ module.exports = {
   preset: 'ts-jest',
   collectCoverage: true,
   collectCoverageFrom: [
-    '<rootDir>/src/modules/**/services/*.ts',
+    '<rootDir>/src/modules/**/services/*.ts'
   ],
   coverageReporters: [
     'text-summary',
